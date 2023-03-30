@@ -1,0 +1,31 @@
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #15161a;
+}
+.link-container {
+  display: flex;
+  align-items: center;
+}
+#border {
+  border-right: 1px solid #9ba3b2;
+}
+.link {
+  display: block;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  height: 15px;
+  padding: 0 10px;
+  color: #9ba3b2;
+}

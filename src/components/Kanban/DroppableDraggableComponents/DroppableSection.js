@@ -1,6 +1,7 @@
 import classes from "./DroppableSection.module.css";
 const DroppableSection = (props) => {
-  const { droppableProps, innerRef, isDraggingOver } = props;
+  const { droppableProps, innerRef, isDraggingOver, providedPlacholder } =
+    props;
 
   return (
     <div
@@ -14,6 +15,7 @@ const DroppableSection = (props) => {
       }`}
     >
       {props.children}
+      {providedPlacholder}
     </div>
   );
 };

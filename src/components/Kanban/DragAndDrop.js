@@ -5,9 +5,11 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { onDragEnd } from "./DragEnd";
 
 import { columnsData } from "./dndData";
+
 import DroppableSection from "./DroppableDraggableComponents/DroppableSection";
-import classes from "./DragAndDrop.module.css";
 import DraggableSection from "./DroppableDraggableComponents/DraggableSection";
+
+import classes from "./DragAndDrop.module.css";
 
 const Kannban = () => {
   const [columns, setColumns] = useState(columnsData);
@@ -34,6 +36,7 @@ const Kannban = () => {
                       isDraggingOver={snapshot.isDraggingOver}
                       droppableProps={provided.droppableProps}
                       innerRef={provided.innerRef}
+                      providedPlacholder={provided.placeholder}
                     >
                       {column.items.map((item, index) => {
                         const itemTitle = item.title;
@@ -48,22 +51,18 @@ const Kannban = () => {
                             {(provided, snapshot) => {
                               return (
                                 <DraggableSection
+                                  date={date}
+                                  itemTitle={itemTitle}
                                   isDraggingOver={snapshot.isDraggingOver}
                                   innerRef={provided.innerRef}
                                   draggableProps={provided.draggableProps}
                                   dragHandleProps={provided.dragHandleProps}
-                                >
-                                  <h3 className={classes["task-title"]}>
-                                    {itemTitle}
-                                  </h3>
-                                  <p className={classes["task-date"]}>{date}</p>
-                                </DraggableSection>
+                                />
                               );
                             }}
                           </Draggable>
                         );
                       })}
-                      {provided.placeholder}
                     </DroppableSection>
                   );
                 }}

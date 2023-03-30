@@ -1,0 +1,39 @@
+.logo {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  padding-right: 20px;
+  margin: 0;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.navbar-links {
+  gap: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding-left: 20px;
+  border-left: 1.5px solid #efeff0;
+}
+.navbar-links a {
+  color: #9ba3b2;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+.navbar-links a:hover {
+  color: #15161a;
+}
+.navbar-links a.active {
+  color: #15161a;
+}

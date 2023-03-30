@@ -14,3 +14,29 @@
 .card-draggable-dragged {
   background-color: #d3c8c8;
 }
+
+.task-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e6ed;
+  padding: 15px;
+}
+.task-title {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  margin: 0;
+  font-size: 12px;
+  line-height: 28px;
+  color: #000000;
+}
+.task-date {
+  margin: 10px 15px;
+  color: #9ba3b2;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+}
