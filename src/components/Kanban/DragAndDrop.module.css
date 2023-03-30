@@ -4,11 +4,40 @@
   gap: 20px;
   padding: 0 20px;
 }
-
 .section-title {
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
+  margin: 20px 0;
   color: #9ba3b2;
+}
+.section-counter {
+  display: inline-block;
+  background: #f7f7f9;
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  margin-left: 5px;
+}
+.task-title {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  border-bottom: 1px solid #e2e6ed;
+  margin: 0;
+  font-size: 12px;
+  line-height: 28px;
+  color: #000000;
+  padding: 15px;
+}
+.task-date {
+  margin: 10px 15px;
+  color: #9ba3b2;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
 }

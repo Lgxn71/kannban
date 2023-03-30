@@ -1,0 +1,16 @@
+.card-draggable {
+  user-select: none;
+  margin: 5px;
+  margin-left: 3.5px;
+  border: 1px solid #e2e6ed;
+  width: 100%;
+  border-radius: 8px;
+  max-width: 290px;
+  height: 100px;
+}
+.card-draggable-unactive {
+  background-color: #ffffff;
+}
+.card-draggable-dragged {
+  background-color: #d3c8c8;
+}

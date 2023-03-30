@@ -1,0 +1,13 @@
+.card-droppable {
+  border-radius: 12px;
+  max-width: 300px;
+  width: 100%;
+  height: 734px;
+  border: 1px solid #e2e6ed;
+}
+.card-droppable-unactive {
+  background-color: #f9fafb;
+}
+.card-droppable-dragged {
+  background-color: #f0f0f9;
+}
