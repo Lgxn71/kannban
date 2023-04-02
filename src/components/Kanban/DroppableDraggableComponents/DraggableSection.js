@@ -8,8 +8,9 @@ const DraggableSection = (props) => {
     draggableProps,
     dragHandleProps,
     itemTitle,
-    date
+    date,
   } = props;
+
   return (
     <div
       {...dragHandleProps}

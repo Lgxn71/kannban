@@ -1,18 +1,14 @@
-import { useState } from "react";
-
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { onDragEnd } from "./DragEnd";
-
-import { columnsData } from "./dndData";
 
 import DroppableSection from "./DroppableDraggableComponents/DroppableSection";
 import DraggableSection from "./DroppableDraggableComponents/DraggableSection";
 
 import classes from "./DragAndDrop.module.css";
 
-const Kannban = () => {
-  const [columns, setColumns] = useState(columnsData);
+const Kannban = (props) => {
+  const { columns, setColumns } = props;
 
   return (
     <div className={classes["container-main"]}>

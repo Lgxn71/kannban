@@ -1,0 +1,118 @@
+
+.popup {
+  position: fixed;
+  top: 50%;
+  width: 510px;
+  left: 50%;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background-color: #ffffff;
+}
+.title {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 28px;
+  color: #15161a;
+  margin: 0;
+  padding: 15px 25px;
+  line-height: 28px;
+  border-bottom: 1px solid #e2e6ed;
+}
+.form {
+  padding: 20px 25px;
+}
+label {
+  margin: 0;
+  line-height: 28px;
+}
+.title-label {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding-bottom: 5px;
+  width: 100%;
+  display: block;
+}
+.title-input {
+  display: block;
+  height: 25px;
+  width: 100%;
+  max-width: 430px;
+  border: 1px solid #eef0f3;
+  border-radius: 5px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  padding: 15px;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+.title-input:focus {
+  outline: 1px solid #15161a;
+}
+.radio-category {
+  display: none;
+}
+.label-categories {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  width: 462px;
+}
+.label-category {
+  padding: 9px 16px;
+  border: 1px solid #eef0f3;
+  border-radius: 5px;
+}
+.label-category:hover {
+  cursor: pointer;
+  background: #fafafa;
+}
+.label-active {
+  border: 1px solid #15161a;
+}
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  background: #fafafa;
+  padding: 15px 25px;
+  border: 1px solid #e2e6ed;
+  border-radius: 0px 0px 10px 10px;
+  max-width: 480px;
+}
+.btn-dark {
+  padding: 9px 26.5px;
+  background: #15161a;
+  border-radius: 5px;
+  border: 0px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  max-width: 80px;
+}
+.btn-dark:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #15161a;
+  border: 1px solid #15161a;
+}
+.btn-light {
+  padding: 9px 16px;
+  background-color: #ffffff;
+  border: 1px solid #eef0f3;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #15161a;
+  border-radius: 5px;
+}
+.btn-light:hover {
+  background-color: #fafafa;
+  cursor: pointer;
+}

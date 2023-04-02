@@ -1,23 +1,22 @@
-import { v4 as uuidv4 } from "uuid";
-export const tasks = [
+export const tasksInitial = [
   { id: "i1", title: "Task 1", date: "Oct 22, 2022 at 13:53PM" },
   { id: "i2", title: "Task 2", date: "Oct 22, 2022 at 13:53PM" },
 ];
 
 export const columnsData = {
-  [uuidv4()]: {
+  todo: {
     name: "To Do",
-    items: tasks,
+    items: tasksInitial,
   },
-  [uuidv4()]: {
-    name: "In Progress ",
+  inprogress: {
+    name: "In Progress",
     items: [],
   },
-  [uuidv4()]: {
+  finished: {
     name: "Finished",
     items: [],
   },
-  [uuidv4()]: {
+  undefined: {
     name: "Undefined",
     items: [],
   },
