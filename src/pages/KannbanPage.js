@@ -9,9 +9,15 @@ import Popup from "../components/Kanban/Popup/Popup";
 import classes from "./KannbanPage.module.css";
 
 const Kannban = () => {
-  const [isShown, setIsShown] = useState(false);
-
   const [columns, setColumns] = useState(columnsData);
+  const [isPopupShown, setIsPopupShown] = useState(false);
+  console.log(columns);
+  const [filteredTaskToEdit, setFilteredTaskToEdit] = useState();
+
+  const [selectedRadio, setSelectedRadio] = useState("todo");
+  const [inputField, setInputField] = useState("");
+  const [edittedTask, setEdittedTask] = useState(null);
+  const [isTaskEditting, setIsTaskEditting] = useState(false);
 
   const insertNewTaskHandler = (newTask) => {
     if (newTask.selectedRadio === "todo") {
@@ -53,12 +59,26 @@ const Kannban = () => {
   };
 
   const showPopupHandler = (event) => {
-    setIsShown(true);
+    setIsPopupShown(true);
   };
   return (
     <>
-      {isShown && (
-        <Popup onTasks={insertNewTaskHandler} onSetIsShown={setIsShown} />
+      {isPopupShown && (
+        <Popup
+          filteredTaskToEdit={filteredTaskToEdit}
+          setEdittedTask={setEdittedTask}
+          selectedRadio={selectedRadio}
+          setSelectedRadio={setSelectedRadio}
+          edittedTask={edittedTask}
+          setIsTaskEditting={setIsTaskEditting}
+          setColumns={setColumns}
+          inputField={inputField}
+          setInputField={setInputField}
+          columns={columns}
+          isTaskEditting={isTaskEditting}
+          onTasks={insertNewTaskHandler}
+          onSetIsPopupShown={setIsPopupShown}
+        />
       )}
       <Container>
         <Card>
@@ -68,7 +88,16 @@ const Kannban = () => {
               + New Task
             </button>
           </div>
-          <DragAndDrop columns={columns} setColumns={setColumns} />
+          <DragAndDrop
+            setFilteredTaskToEdit={setFilteredTaskToEdit}
+            inputField={inputField}
+            setEdittedTask={setEdittedTask}
+            setInputField={setInputField}
+            setIsTaskEditting={setIsTaskEditting}
+            onSetIsPopupShown={setIsPopupShown}
+            columns={columns}
+            setColumns={setColumns}
+          />
         </Card>
       </Container>
     </>

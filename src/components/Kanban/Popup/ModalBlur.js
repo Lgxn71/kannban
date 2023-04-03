@@ -3,9 +3,10 @@ import { createPortal } from "react-dom";
 import classes from "./ModalBlur.module.css";
 
 const ModalBlur = (props) => {
-  const { onSetIsShown } = props;
+  const { onSetIsPopupShown } = props;
+
   const closePopUpHandler = () => {
-    onSetIsShown(false);
+    onSetIsPopupShown(false);
   };
 
   return (

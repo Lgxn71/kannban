@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import ModalBlur from "./ModalBlur";
@@ -7,25 +6,199 @@ import Card from "../../UI/Card";
 import classes from "./Popup.module.css";
 
 import radioMap from "../../../datamap/radiobuttons";
+import { useEffect } from "react";
 
 const Popup = (props) => {
-  const { onSetIsShown, onTasks } = props;
+  const {
+    setEdittedTask,
+    selectedRadio,
+    setSelectedRadio,
+    edittedTask,
+    onSetIsPopupShown,
+    filteredTaskToEdit,
+    onTasks,
+    isTaskEditting,
+    setIsTaskEditting,
+    inputField,
+    setInputField,
+    setColumns,
+  } = props;
 
-  const [inputField, setInputField] = useState("");
-  const [selectedRadio, setSelectedRadio] = useState("todo");
+  useEffect(() => {
+    setEdittedTask(() => ({
+      id: filteredTaskToEdit.id,
+      title: inputField,
+      date: filteredTaskToEdit.date,
+    }));
+  }, [setEdittedTask, inputField, filteredTaskToEdit]);
 
-  const inputFieldChangeHandler = (event) => {
+  const inputFieldHandler = (event) => {
     setInputField(event.target.value);
+  };
+
+  const formEditSubmitHandler = (event) => {
+    event.preventDefault();
+
+    console.log(edittedTask);
+    console.log(selectedRadio);
+
+    if (selectedRadio === "todo") {
+      setColumns((prevState) => {
+        const filteredItemsTodo = prevState.todo.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+        const filteredItemsInprogress = prevState.inprogress.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+        const filteredItemsUndefined = prevState.undefined.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+        const filteredItemsFinished = prevState.finished.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+
+        return {
+          todo: {
+            name: prevState.todo.name,
+            items: [
+              ...filteredItemsTodo,
+              {
+                ...edittedTask,
+              },
+            ],
+          },
+          inprogress: {
+            name: prevState.inprogress.name,
+            items: [...filteredItemsInprogress],
+          },
+          finished: {
+            name: prevState.finished.name,
+            items: [...filteredItemsFinished],
+          },
+          undefined: {
+            name: prevState.undefined.name,
+            items: [...filteredItemsUndefined],
+          },
+        };
+      });
+    }
+
+    if (selectedRadio === "inprogress") {
+      setColumns((prevState) => {
+        const filteredItemsTodo = prevState.todo.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+        const filteredItemsInprogress = prevState.inprogress.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+        const filteredItemsUndefined = prevState.undefined.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+        const filteredItemsFinished = prevState.finished.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+
+        return {
+          todo: {
+            name: prevState.todo.name,
+            items: [...filteredItemsTodo],
+          },
+          inprogress: {
+            name: prevState.inprogress.name,
+            items: [...filteredItemsInprogress, { ...edittedTask }],
+          },
+          finished: {
+            name: prevState.finished.name,
+            items: [...filteredItemsFinished],
+          },
+          undefined: {
+            name: prevState.undefined.name,
+            items: [...filteredItemsUndefined],
+          },
+        };
+      });
+    }
+
+    if (selectedRadio === "finished") {
+      setColumns((prevState) => {
+        const filteredItemsTodo = prevState.todo.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+        const filteredItemsInprogress = prevState.inprogress.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+        const filteredItemsUndefined = prevState.undefined.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+        const filteredItemsFinished = prevState.finished.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+
+        return {
+          todo: {
+            name: prevState.todo.name,
+            items: [...filteredItemsTodo],
+          },
+          inprogress: {
+            name: prevState.inprogress.name,
+            items: [...filteredItemsInprogress],
+          },
+          finished: {
+            name: prevState.finished.name,
+            items: [...filteredItemsFinished, { ...edittedTask }],
+          },
+          undefined: {
+            name: prevState.undefined.name,
+            items: [...filteredItemsUndefined],
+          },
+        };
+      });
+    }
+
+    if (selectedRadio === "undefined") {
+      setColumns((prevState) => {
+        const filteredItemsTodo = prevState.todo.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+        const filteredItemsInprogress = prevState.inprogress.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+        const filteredItemsUndefined = prevState.undefined.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+        const filteredItemsFinished = prevState.finished.items.filter(
+          (item) => item.id !== edittedTask.id
+        );
+
+        return {
+          todo: {
+            name: prevState.todo.name,
+            items: [...filteredItemsTodo],
+          },
+          inprogress: {
+            name: prevState.inprogress.name,
+            items: [...filteredItemsInprogress],
+          },
+          finished: {
+            name: prevState.finished.name,
+            items: [...filteredItemsFinished],
+          },
+          undefined: {
+            name: prevState.undefined.name,
+            items: [...filteredItemsUndefined, { ...edittedTask }],
+          },
+        };
+      });
+    }
+    onSetIsPopupShown(false);
+    setIsTaskEditting(false);
   };
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
-    setInputField("");
-    setSelectedRadio("");
-    onSetIsShown(false);
-
     const date = new Date();
+
     const options = {
       month: "short",
       day: "numeric",
@@ -35,15 +208,19 @@ const Popup = (props) => {
       hour12: true,
     };
     const formattedDate = date.toLocaleString("en-US", options);
-
+    const taskId = uuidv4();
     const task = {
-      id: uuidv4(),
+      id: taskId,
       title: inputField,
       date: [formattedDate],
       selectedRadio: selectedRadio,
     };
 
     onTasks(task);
+
+    setInputField("");
+    setSelectedRadio("todo");
+    onSetIsPopupShown(false);
   };
 
   const radioChangeHandler = (event) => {
@@ -51,27 +228,32 @@ const Popup = (props) => {
   };
 
   const closePopUpHandler = () => {
-    onSetIsShown(false);
+    onSetIsPopupShown(false);
   };
 
   return (
     <>
-      <ModalBlur onSetIsShown={onSetIsShown} />
+      <ModalBlur onSetIsPopupShown={onSetIsPopupShown} />
       <div className={classes.popup}>
         <Card>
           <h2 className={classes.title}>Add New Task</h2>
-          <form onSubmit={formSubmitHandler} action="">
+          <form
+            onSubmit={
+              isTaskEditting ? formEditSubmitHandler : formSubmitHandler
+            }
+          >
             <div className={classes.form}>
               <label className={classes["title-label"]} htmlFor="title">
                 Title
               </label>
               <input
+                value={inputField}
                 className={classes["title-input"]}
                 name="title"
                 type="text"
                 id="title"
                 placeholder="Enter title for kanban"
-                onChange={inputFieldChangeHandler}
+                onChange={inputFieldHandler}
                 required
               />
 
@@ -98,7 +280,11 @@ const Popup = (props) => {
                 Cancel
               </button>
 
-              <button type="submit" className={classes["btn-dark"]}>
+              <button
+                // onClick={isTaskEditting ? editTask : undefined}
+                type="submit"
+                className={classes["btn-dark"]}
+              >
                 Add
               </button>
             </div>

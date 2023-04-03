@@ -8,7 +8,16 @@ import DraggableSection from "./DroppableDraggableComponents/DraggableSection";
 import classes from "./DragAndDrop.module.css";
 
 const Kannban = (props) => {
-  const { columns, setColumns } = props;
+  const {
+    columns,
+    setColumns,
+    onSetIsPopupShown,
+    setIsTaskEditting,
+    setInputField,
+    inputField,
+    setEdittedTask,
+    setFilteredTaskToEdit,
+  } = props;
 
   return (
     <div className={classes["container-main"]}>
@@ -35,8 +44,10 @@ const Kannban = (props) => {
                       providedPlacholder={provided.placeholder}
                     >
                       {column.items.map((item, index) => {
-                        const itemTitle = item.title;
-                        const date = item.date;
+                        const taskContent = {
+                          itemTitle: item.title,
+                          date: item.date,
+                        };
 
                         return (
                           <Draggable
@@ -47,10 +58,18 @@ const Kannban = (props) => {
                             {(provided, snapshot) => {
                               return (
                                 <DraggableSection
-                                  date={date}
-                                  itemTitle={itemTitle}
-                                  isDraggingOver={snapshot.isDraggingOver}
+                                  setFilteredTaskToEdit={setFilteredTaskToEdit}
+                                  inputField={inputField}
+                                  setEdittedTask={setEdittedTask}
+                                  setInputField={setInputField}
+                                  setIsTaskEditting={setIsTaskEditting}
+                                  taskContent={taskContent}
+                                  onSetIsPopupShown={onSetIsPopupShown}
+                                  id={item.id}
+                                  column={column}
+                                  setColumns={setColumns}
                                   innerRef={provided.innerRef}
+                                  isDraggingOver={snapshot.isDraggingOver}
                                   draggableProps={provided.draggableProps}
                                   dragHandleProps={provided.dragHandleProps}
                                 />

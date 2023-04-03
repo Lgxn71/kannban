@@ -20,6 +20,7 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #e2e6ed;
+  position: relative;
   padding: 15px;
 }
 .task-title {
@@ -39,4 +40,33 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 20px;
+}
+.options {
+  box-sizing: border-box;
+  background-color: #ffffff;
+  cursor: pointer;
+  border-radius: 5px;
+  display: block;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  top: 45px;
+  left: 175px;
+  max-width: 150px;
+  max-height: 90px;
+  border: 1px solid #e2e6ed;
+}
+.options p {
+  line-height: 28px;
+  font-size: 14px;
+  color: #9ba3b2;
+  margin: 0;
+  display: block;
+  padding: 8px 15px;
+  border-bottom: 1px solid #e2e6ed;
+}
+.options p:hover {
+  background-color: #f7f7f9;
+  color: #15161a;
+  cursor: pointer;
 }
