@@ -25,12 +25,17 @@ const Popup = (props) => {
   } = props;
 
   useEffect(() => {
-    setEdittedTask(() => ({
+    setEdittedTask((state) => ({
       id: filteredTaskToEdit.id,
       title: inputField,
       date: filteredTaskToEdit.date,
     }));
-  }, [setEdittedTask, inputField, filteredTaskToEdit]);
+  }, [
+    filteredTaskToEdit.id,
+    inputField,
+    setEdittedTask,
+    filteredTaskToEdit.date,
+  ]);
 
   const inputFieldHandler = (event) => {
     setInputField(event.target.value);
@@ -39,14 +44,11 @@ const Popup = (props) => {
   const formEditSubmitHandler = (event) => {
     event.preventDefault();
 
-    console.log(edittedTask);
-    console.log(selectedRadio);
-
     if (selectedRadio === "todo") {
       setColumns((prevState) => {
-        const filteredItemsTodo = prevState.todo.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
+        const filteredItemsTodo = prevState.todo.items.filter((item) => {
+          return item.id !== edittedTask.id;
+        });
         const filteredItemsInprogress = prevState.inprogress.items.filter(
           (item) => item.id !== edittedTask.id
         );

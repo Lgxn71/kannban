@@ -52,12 +52,10 @@ const DraggableSection = (props) => {
     onSetIsPopupShown(true);
 
     const singleTaskId = event.target.dataset.id;
-
     const edittingTask = column.items.find((item) => {
       return item.id === singleTaskId;
     });
-    console.log(edittingTask);
-    console.log("define task to edit");
+
     setInputField(edittingTask.title);
     setFilteredTaskToEdit({ ...edittingTask });
   };

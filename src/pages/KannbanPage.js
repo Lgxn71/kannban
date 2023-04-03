@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { columnsData } from "../datamap/dndData";
 import DragAndDrop from "../components/Kanban/DragAndDrop";
 
@@ -11,14 +11,15 @@ import classes from "./KannbanPage.module.css";
 const Kannban = () => {
   const [columns, setColumns] = useState(columnsData);
   const [isPopupShown, setIsPopupShown] = useState(false);
-  console.log(columns);
-  const [filteredTaskToEdit, setFilteredTaskToEdit] = useState();
+  const [filteredTaskToEdit, setFilteredTaskToEdit] = useState({});
 
   const [selectedRadio, setSelectedRadio] = useState("todo");
   const [inputField, setInputField] = useState("");
   const [edittedTask, setEdittedTask] = useState(null);
   const [isTaskEditting, setIsTaskEditting] = useState(false);
 
+  useMemo(() => filteredTaskToEdit, [filteredTaskToEdit]);
+  useMemo(() => inputField, [inputField]);
   const insertNewTaskHandler = (newTask) => {
     if (newTask.selectedRadio === "todo") {
       setColumns((prevState) => ({
