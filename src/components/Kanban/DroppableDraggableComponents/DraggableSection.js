@@ -7,10 +7,10 @@ const DraggableSection = (props) => {
     setColumns,
     id,
     column,
-    onSetIsPopupShown,
-    setIsTaskEditting,
+    setIsPopupShown,
+    setTaskToEditState,
     setInputField,
-    setFilteredTaskToEdit,
+    selectedRadio,
   } = props;
 
   const [isDropDownShown, setIsDropDownShown] = useState(false);
@@ -48,16 +48,21 @@ const DraggableSection = (props) => {
   };
 
   const editTaskHandler = (event) => {
-    setIsTaskEditting(true);
-    onSetIsPopupShown(true);
+    const taskID = event.target.dataset.id;
+    const taskToEdit = column.items.find((item) => taskID === item.id);
 
-    const singleTaskId = event.target.dataset.id;
-    const edittingTask = column.items.find((item) => {
-      return item.id === singleTaskId;
+    setInputField(taskToEdit.title);
+    setTaskToEditState({
+      task: {
+        id: taskToEdit.id,
+        title: taskToEdit.title,
+        date: taskToEdit.date,
+      },
+      isEditting: true,
+      selectedRadio: selectedRadio,
     });
-
-    setInputField(edittingTask.title);
-    setFilteredTaskToEdit({ ...edittingTask });
+    setIsPopupShown(true);
+    setIsDropDownShown((prevState) => !prevState);
   };
 
   const showDropDownHandler = () => {

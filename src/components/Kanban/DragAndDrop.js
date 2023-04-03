@@ -11,12 +11,11 @@ const Kannban = (props) => {
   const {
     columns,
     setColumns,
-    onSetIsPopupShown,
-    setIsTaskEditting,
     setInputField,
     inputField,
-    setEdittedTask,
-    setFilteredTaskToEdit,
+    setIsPopupShown,
+    setTaskToEditState,
+    selectedRadio,
   } = props;
 
   return (
@@ -58,13 +57,12 @@ const Kannban = (props) => {
                             {(provided, snapshot) => {
                               return (
                                 <DraggableSection
-                                  setFilteredTaskToEdit={setFilteredTaskToEdit}
                                   inputField={inputField}
-                                  setEdittedTask={setEdittedTask}
                                   setInputField={setInputField}
-                                  setIsTaskEditting={setIsTaskEditting}
                                   taskContent={taskContent}
-                                  onSetIsPopupShown={onSetIsPopupShown}
+                                  setIsPopupShown={setIsPopupShown}
+                                  setTaskToEditState={setTaskToEditState}
+                                  selectedRadio={selectedRadio}
                                   id={item.id}
                                   column={column}
                                   setColumns={setColumns}

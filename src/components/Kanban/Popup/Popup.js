@@ -1,203 +1,120 @@
 import { v4 as uuidv4 } from "uuid";
-
 import ModalBlur from "./ModalBlur";
 import RadioButton from "./RadioButton";
 import Card from "../../UI/Card";
 import classes from "./Popup.module.css";
 
 import radioMap from "../../../datamap/radiobuttons";
-import { useEffect } from "react";
 
 const Popup = (props) => {
   const {
-    setEdittedTask,
+    columns,
+    setColumns,
     selectedRadio,
     setSelectedRadio,
-    edittedTask,
-    onSetIsPopupShown,
-    filteredTaskToEdit,
-    onTasks,
-    isTaskEditting,
-    setIsTaskEditting,
+    setIsPopupShown,
     inputField,
     setInputField,
-    setColumns,
+    onTasks,
+    taskToEditState,
+    setTaskToEditState,
   } = props;
-
-  useEffect(() => {
-    setEdittedTask((state) => ({
-      id: filteredTaskToEdit.id,
-      title: inputField,
-      date: filteredTaskToEdit.date,
-    }));
-  }, [
-    filteredTaskToEdit.id,
-    inputField,
-    setEdittedTask,
-    filteredTaskToEdit.date,
-  ]);
 
   const inputFieldHandler = (event) => {
     setInputField(event.target.value);
+    if (taskToEditState.isEditting) {
+      setTaskToEditState((prevState) => ({
+        ...prevState,
+        task: {
+          ...prevState.task,
+          title: event.target.value,
+        },
+      }));
+    }
+  };
+  const radioChangeHandler = (event) => {
+    setSelectedRadio(event.target.value);
+
+    if (taskToEditState.isEditting) {
+      setTaskToEditState((prevState) => ({
+        selectedRadio: event.target.value,
+        ...prevState,
+      }));
+    }
   };
 
-  const formEditSubmitHandler = (event) => {
+  const closePopUpHandler = () => {
+    setIsPopupShown(false);
+  };
+
+  const formEditHandler = (event) => {
     event.preventDefault();
 
-    if (selectedRadio === "todo") {
-      setColumns((prevState) => {
-        const filteredItemsTodo = prevState.todo.items.filter((item) => {
-          return item.id !== edittedTask.id;
-        });
-        const filteredItemsInprogress = prevState.inprogress.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
-        const filteredItemsUndefined = prevState.undefined.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
-        const filteredItemsFinished = prevState.finished.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
+    const filteredTasksTodo = columns.todo.items.filter(
+      (item) => item.id !== taskToEditState.task.id
+    );
+    const filteredTasksInProgress = columns.inprogress.items.filter(
+      (item) => item.id !== taskToEditState.task.id
+    );
+    const filteredTasksFinished = columns.finished.items.filter(
+      (item) => item.id !== taskToEditState.task.id
+    );
+    const filteredTasksUndefined = columns.undefined.items.filter(
+      (item) => item.id !== taskToEditState.task.id
+    );
 
-        return {
-          todo: {
-            name: prevState.todo.name,
-            items: [
-              ...filteredItemsTodo,
-              {
-                ...edittedTask,
-              },
-            ],
-          },
-          inprogress: {
-            name: prevState.inprogress.name,
-            items: [...filteredItemsInprogress],
-          },
-          finished: {
-            name: prevState.finished.name,
-            items: [...filteredItemsFinished],
-          },
-          undefined: {
-            name: prevState.undefined.name,
-            items: [...filteredItemsUndefined],
-          },
-        };
-      });
+    if (taskToEditState.selectedRadio === "todo") {
+      setColumns((prevState) => ({
+        ...prevState,
+        todo: {
+          name: prevState.todo.name,
+          items: [taskToEditState.task, ...filteredTasksTodo],
+        },
+      }));
+    }
+    if (taskToEditState.selectedRadio === "inprogress") {
+      setColumns((prevState) => ({
+        ...prevState,
+        inprogress: {
+          name: prevState.inprogress.name,
+          items: [taskToEditState.task, ...filteredTasksInProgress],
+        },
+      }));
+    }
+    if (taskToEditState.selectedRadio === "finished") {
+      setColumns((prevState) => ({
+        ...prevState,
+        finished: {
+          name: prevState.finished.name,
+          items: [taskToEditState.task, ...filteredTasksFinished],
+        },
+      }));
     }
 
-    if (selectedRadio === "inprogress") {
-      setColumns((prevState) => {
-        const filteredItemsTodo = prevState.todo.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
-        const filteredItemsInprogress = prevState.inprogress.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
-        const filteredItemsUndefined = prevState.undefined.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
-        const filteredItemsFinished = prevState.finished.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
-
-        return {
-          todo: {
-            name: prevState.todo.name,
-            items: [...filteredItemsTodo],
-          },
-          inprogress: {
-            name: prevState.inprogress.name,
-            items: [...filteredItemsInprogress, { ...edittedTask }],
-          },
-          finished: {
-            name: prevState.finished.name,
-            items: [...filteredItemsFinished],
-          },
-          undefined: {
-            name: prevState.undefined.name,
-            items: [...filteredItemsUndefined],
-          },
-        };
-      });
+    if (taskToEditState.selectedRadio === "undefined") {
+      setColumns((prevState) => ({
+        ...prevState,
+        undefined: {
+          name: prevState.undefined.name,
+          items: [taskToEditState.task, ...filteredTasksUndefined],
+        },
+      }));
     }
 
-    if (selectedRadio === "finished") {
-      setColumns((prevState) => {
-        const filteredItemsTodo = prevState.todo.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
-        const filteredItemsInprogress = prevState.inprogress.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
-        const filteredItemsUndefined = prevState.undefined.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
-        const filteredItemsFinished = prevState.finished.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
-
-        return {
-          todo: {
-            name: prevState.todo.name,
-            items: [...filteredItemsTodo],
-          },
-          inprogress: {
-            name: prevState.inprogress.name,
-            items: [...filteredItemsInprogress],
-          },
-          finished: {
-            name: prevState.finished.name,
-            items: [...filteredItemsFinished, { ...edittedTask }],
-          },
-          undefined: {
-            name: prevState.undefined.name,
-            items: [...filteredItemsUndefined],
-          },
-        };
-      });
-    }
-
-    if (selectedRadio === "undefined") {
-      setColumns((prevState) => {
-        const filteredItemsTodo = prevState.todo.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
-        const filteredItemsInprogress = prevState.inprogress.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
-        const filteredItemsUndefined = prevState.undefined.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
-        const filteredItemsFinished = prevState.finished.items.filter(
-          (item) => item.id !== edittedTask.id
-        );
-
-        return {
-          todo: {
-            name: prevState.todo.name,
-            items: [...filteredItemsTodo],
-          },
-          inprogress: {
-            name: prevState.inprogress.name,
-            items: [...filteredItemsInprogress],
-          },
-          finished: {
-            name: prevState.finished.name,
-            items: [...filteredItemsFinished],
-          },
-          undefined: {
-            name: prevState.undefined.name,
-            items: [...filteredItemsUndefined, { ...edittedTask }],
-          },
-        };
-      });
-    }
-    onSetIsPopupShown(false);
-    setIsTaskEditting(false);
+    setTaskToEditState({
+      task: {},
+      isEditting: false,
+      selectedRadio: "",
+    });
+    setIsPopupShown(false);
+    setInputField("");
   };
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
+    if (taskToEditState.isEditting) {
+      return;
+    }
 
     const date = new Date();
 
@@ -214,34 +131,30 @@ const Popup = (props) => {
     const task = {
       id: taskId,
       title: inputField,
-      date: [formattedDate],
+      date: formattedDate,
       selectedRadio: selectedRadio,
     };
-
     onTasks(task);
 
     setInputField("");
     setSelectedRadio("todo");
-    onSetIsPopupShown(false);
-  };
-
-  const radioChangeHandler = (event) => {
-    setSelectedRadio(event.target.value);
-  };
-
-  const closePopUpHandler = () => {
-    onSetIsPopupShown(false);
+    setIsPopupShown(false);
   };
 
   return (
     <>
-      <ModalBlur onSetIsPopupShown={onSetIsPopupShown} />
+      <ModalBlur setIsPopupShown={setIsPopupShown} />
       <div className={classes.popup}>
         <Card>
-          <h2 className={classes.title}>Add New Task</h2>
+          {taskToEditState.isEditting && (
+            <h2 className={classes.title}>Edit Task</h2>
+          )}
+          {!taskToEditState.isEditting && (
+            <h2 className={classes.title}>Add New Task</h2>
+          )}
           <form
             onSubmit={
-              isTaskEditting ? formEditSubmitHandler : formSubmitHandler
+              taskToEditState.isEditting ? formEditHandler : formSubmitHandler
             }
           >
             <div className={classes.form}>
@@ -259,18 +172,22 @@ const Popup = (props) => {
                 required
               />
 
-              <h2 className={classes["title-label"]}>Select Category</h2>
-              <div className={classes["label-categories"]}>
-                {radioMap.map((radio) => (
-                  <RadioButton
-                    key={radio.id}
-                    radioChangeHandler={radioChangeHandler}
-                    id={radio.id}
-                    label={radio.label}
-                    selectedRadio={selectedRadio}
-                  />
-                ))}
-              </div>
+              {!taskToEditState.isEditting && (
+                <>
+                  <h2 className={classes["title-label"]}>Select Category</h2>
+                  <div className={classes["label-categories"]}>
+                    {radioMap.map((radio) => (
+                      <RadioButton
+                        key={radio.id}
+                        radioChangeHandler={radioChangeHandler}
+                        id={radio.id}
+                        label={radio.label}
+                        selectedRadio={selectedRadio}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
 
             <div className={classes["form-actions"]}>
@@ -282,11 +199,7 @@ const Popup = (props) => {
                 Cancel
               </button>
 
-              <button
-                // onClick={isTaskEditting ? editTask : undefined}
-                type="submit"
-                className={classes["btn-dark"]}
-              >
+              <button type="submit" className={classes["btn-dark"]}>
                 Add
               </button>
             </div>

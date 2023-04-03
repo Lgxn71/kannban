@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { columnsData } from "../datamap/dndData";
 import DragAndDrop from "../components/Kanban/DragAndDrop";
 
@@ -11,15 +11,17 @@ import classes from "./KannbanPage.module.css";
 const Kannban = () => {
   const [columns, setColumns] = useState(columnsData);
   const [isPopupShown, setIsPopupShown] = useState(false);
-  const [filteredTaskToEdit, setFilteredTaskToEdit] = useState({});
 
   const [selectedRadio, setSelectedRadio] = useState("todo");
   const [inputField, setInputField] = useState("");
-  const [edittedTask, setEdittedTask] = useState(null);
-  const [isTaskEditting, setIsTaskEditting] = useState(false);
+  const [taskToEditState, setTaskToEditState] = useState({
+    task: {},
+    isEditting: false,
+    selectedRadio: "",
+  });
 
-  useMemo(() => filteredTaskToEdit, [filteredTaskToEdit]);
-  useMemo(() => inputField, [inputField]);
+  console.log(taskToEditState.selectedRadio);
+
   const insertNewTaskHandler = (newTask) => {
     if (newTask.selectedRadio === "todo") {
       setColumns((prevState) => ({
@@ -66,19 +68,16 @@ const Kannban = () => {
     <>
       {isPopupShown && (
         <Popup
-          filteredTaskToEdit={filteredTaskToEdit}
-          setEdittedTask={setEdittedTask}
           selectedRadio={selectedRadio}
           setSelectedRadio={setSelectedRadio}
-          edittedTask={edittedTask}
-          setIsTaskEditting={setIsTaskEditting}
-          setColumns={setColumns}
           inputField={inputField}
           setInputField={setInputField}
           columns={columns}
-          isTaskEditting={isTaskEditting}
+          setColumns={setColumns}
           onTasks={insertNewTaskHandler}
-          onSetIsPopupShown={setIsPopupShown}
+          setIsPopupShown={setIsPopupShown}
+          taskToEditState={taskToEditState}
+          setTaskToEditState={setTaskToEditState}
         />
       )}
       <Container>
@@ -90,14 +89,13 @@ const Kannban = () => {
             </button>
           </div>
           <DragAndDrop
-            setFilteredTaskToEdit={setFilteredTaskToEdit}
             inputField={inputField}
-            setEdittedTask={setEdittedTask}
             setInputField={setInputField}
-            setIsTaskEditting={setIsTaskEditting}
-            onSetIsPopupShown={setIsPopupShown}
+            setIsPopupShown={setIsPopupShown}
             columns={columns}
             setColumns={setColumns}
+            setTaskToEditState={setTaskToEditState}
+            selectedRadio={selectedRadio}
           />
         </Card>
       </Container>
