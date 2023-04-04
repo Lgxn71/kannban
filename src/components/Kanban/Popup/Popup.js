@@ -34,13 +34,6 @@ const Popup = (props) => {
   };
   const radioChangeHandler = (event) => {
     setSelectedRadio(event.target.value);
-
-    if (taskToEditState.isEditting) {
-      setTaskToEditState((prevState) => ({
-        selectedRadio: event.target.value,
-        ...prevState,
-      }));
-    }
   };
 
   const closePopUpHandler = () => {

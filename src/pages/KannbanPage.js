@@ -10,17 +10,16 @@ import classes from "./KannbanPage.module.css";
 
 const Kannban = () => {
   const [columns, setColumns] = useState(columnsData);
-  const [isPopupShown, setIsPopupShown] = useState(false);
 
+  const [isPopupShown, setIsPopupShown] = useState(false);
   const [selectedRadio, setSelectedRadio] = useState("todo");
   const [inputField, setInputField] = useState("");
+
   const [taskToEditState, setTaskToEditState] = useState({
     task: {},
     isEditting: false,
     selectedRadio: "",
   });
-
-  console.log(taskToEditState.selectedRadio);
 
   const insertNewTaskHandler = (newTask) => {
     if (newTask.selectedRadio === "todo") {
@@ -80,6 +79,7 @@ const Kannban = () => {
           setTaskToEditState={setTaskToEditState}
         />
       )}
+
       <Container>
         <Card>
           <div className={classes.eyebrow}>

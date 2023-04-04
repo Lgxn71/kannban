@@ -1,11 +1,11 @@
 .card-draggable {
   user-select: none;
   margin: 5px;
-  margin-left: 3.5px;
+  margin-left: 3px;
   border: 1px solid #e2e6ed;
-  width: 100%;
+  width: 97%;
   border-radius: 8px;
-  max-width: 290px;
+  max-width: 400px;
   height: 100px;
 }
 .card-draggable-unactive {

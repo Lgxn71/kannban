@@ -28,7 +28,7 @@ const Kannban = (props) => {
           const columnName = column.name;
 
           return (
-            <div key={id}>
+            <div className={classes["single-column"]} key={id}>
               <h3 className={classes["section-title"]}>
                 {columnName}
                 <span className={classes["section-counter"]}>{counter}</span>
