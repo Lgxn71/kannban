@@ -1,0 +1,22 @@
+.eyebrow-shared {
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.eyebrow-white {
+  border-bottom: 1px solid #efeff0;
+}
+.eyebrow-dark {
+  border: 1px solid #30333a;
+}
+.eyebrow-title-shared {
+  font-weight: 500;
+  font-size: 16px;
+}
+.eyebrow-title-white {
+  color: #15161a;
+}
+.eyebrow-title-dark {
+  color: #ffffff;
+}

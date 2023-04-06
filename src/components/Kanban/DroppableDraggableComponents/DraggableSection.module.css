@@ -2,17 +2,26 @@
   user-select: none;
   margin: 5px;
   margin-left: 3px;
-  border: 1px solid #e2e6ed;
   width: 97%;
   border-radius: 8px;
   max-width: 400px;
   height: 100px;
 }
-.card-draggable-unactive {
+.card-draggable-unactive-white {
+  border: 1px solid #e2e6ed;
   background-color: #ffffff;
 }
-.card-draggable-dragged {
+.card-draggable-dragged-white {
+  border: 1px solid #e2e6ed;
   background-color: #d3c8c8;
+}
+.card-draggable-unactive-dark {
+  border: 1px solid #30333a;
+  background-color: #1f2126;
+}
+.card-draggable-dragged-dark {
+  border: 1px solid #30333a;
+  background-color: yellow;
 }
 
 .task-title-container {
@@ -24,26 +33,34 @@
   padding: 15px;
 }
 .task-title {
-  font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: 500;
   margin: 0;
   font-size: 12px;
   line-height: 28px;
+}
+.task-title-dark {
   color: #000000;
+}
+.task-title-white {
+  color: #ffffff;
 }
 .task-date {
   margin: 10px 15px;
-  color: #9ba3b2;
-  font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 20px;
 }
+.task-date-white {
+  color: #9ba3b2;
+}
+.task-date-dark {
+  color: #5b616e;
+}
+/* outsource into other file */
 .options {
   box-sizing: border-box;
-  background-color: #ffffff;
   cursor: pointer;
   border-radius: 5px;
   display: block;
@@ -54,18 +71,51 @@
   left: 175px;
   max-width: 150px;
   max-height: 90px;
+}
+
+.options-theme-dark {
+  /* NEED TO CHANGE */
+  background-color: #1f2126;
+  border: 1px solid #30333a;
+}
+.options-theme-white {
+  background-color: #ffffff;
   border: 1px solid #e2e6ed;
 }
-.options p {
+.breakline {
+  margin: 0;
+  width: 100%;
+  height: 0px;
+  border: 0px;
+}
+.breakline-white-theme {
+  border-bottom: 1px solid #e2e6ed;
+}
+
+.breakline-dark-theme {
+  /* NEED TO CHANGE */
+  border-bottom: 1px solid #e2e6ed;
+}
+.options .option {
   line-height: 28px;
   font-size: 14px;
-  color: #9ba3b2;
   margin: 0;
   display: block;
   padding: 8px 15px;
-  border-bottom: 1px solid #e2e6ed;
 }
-.options p:hover {
+.option-white-theme {
+  color: #9ba3b2;
+}
+.option-white-theme:hover {
+  background-color: #f7f7f9;
+  color: #15161a;
+  cursor: pointer;
+}
+/* NEED TO CHANGE */
+.option-dark-theme {
+  color: #767e8d;
+}
+.option-dark-theme:hover {
   background-color: #f7f7f9;
   color: #15161a;
   cursor: pointer;

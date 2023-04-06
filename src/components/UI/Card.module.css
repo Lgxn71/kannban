@@ -1,4 +1,10 @@
 .card-container {
   border: 1px solid #efeff0;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+.card-container-dark {
+  background-color: #0d0e11;
+  border: 1px solid #30333a;
   border-radius: 10px;
 }

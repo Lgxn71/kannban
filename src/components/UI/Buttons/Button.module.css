@@ -1,0 +1,36 @@
+.btn {
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 14px;
+  height: 40px;
+  border-radius: 5px;
+  width: 110px;
+  padding: 10px;
+}
+
+.btn-dark {
+  background-color: #15161a;
+  color: #ffffff;
+  border: 0px;
+}
+.btn-dark:active,
+.btn-dark:hover {
+  border: 1px solid #15161a;
+  cursor: pointer;
+  color: #15161a;
+  background-color: #ffffff;
+}
+
+.btn-white {
+  background: #ffffff;
+  border: 0px;
+  color: #000000;
+}
+.btn-white:active,
+.btn-white:hover {
+  cursor: pointer;
+  background-color: #0057ff;
+  color: white;
+}

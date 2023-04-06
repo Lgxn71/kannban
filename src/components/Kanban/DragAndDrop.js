@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { onDragEnd } from "./DragEnd";
@@ -8,6 +9,7 @@ import DraggableSection from "./DroppableDraggableComponents/DraggableSection";
 import classes from "./DragAndDrop.module.css";
 
 const Kannban = (props) => {
+  const isDarkTheme = useSelector((state) => state.isDark);
   const {
     columns,
     setColumns,
@@ -29,9 +31,23 @@ const Kannban = (props) => {
 
           return (
             <div className={classes["single-column"]} key={id}>
-              <h3 className={classes["section-title"]}>
+              <h3
+                className={`${classes["section-title"]} ${
+                  isDarkTheme
+                    ? classes["section-title-white"]
+                    : classes["section-title-greyish"]
+                }`}
+              >
                 {columnName}
-                <span className={classes["section-counter"]}>{counter}</span>
+                <span
+                  className={`${classes["section-counter"]} ${
+                    isDarkTheme
+                      ? classes["section-counter-dark"]
+                      : classes["section-counter-white"]
+                  }`}
+                >
+                  {counter}
+                </span>
               </h3>
               <Droppable droppableId={id}>
                 {(provided, snapshot) => {

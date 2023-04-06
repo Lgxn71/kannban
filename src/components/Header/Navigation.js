@@ -1,18 +1,20 @@
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import classes from "./Navigation.module.css";
 
 const Navigation = () => {
-  return (
+  const isDarkTheme = useSelector((state) => state.isDark);
+  const darkThemeNavBar = (
     <nav className={classes.navbar}>
       <div>
-        <h1 className={classes.logo}>taskmanager.</h1>
+        <h1 className={classes["logo-dark"]}>taskmanager.</h1>
       </div>
 
       <ul className={classes["navbar-links"]}>
-        <li>
+        <li className={classes["dark-link"]}>
           <NavLink
-            to="kannban"
+            to="/kanban"
             className={({ isActive }) =>
               isActive ? classes.active : undefined
             }
@@ -20,7 +22,7 @@ const Navigation = () => {
             kanban
           </NavLink>
         </li>
-        <li>
+        <li className={classes["dark-link"]}>
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -33,5 +35,36 @@ const Navigation = () => {
       </ul>
     </nav>
   );
+  const lightThemeNavBar = (
+    <nav className={classes.navbar}>
+      <div>
+        <h1 className={classes.logo}>taskmanager.</h1>
+      </div>
+
+      <ul className={classes["navbar-links"]}>
+        <li className={classes["ligth-link"]}>
+          <NavLink
+            to="kanban"
+            className={({ isActive }) =>
+              isActive ? classes.active : undefined
+            }
+          >
+            kanban
+          </NavLink>
+        </li>
+        <li className={classes["ligth-link"]}>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? classes.active : undefined
+            }
+          >
+            docs
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
+  );
+  return <>{isDarkTheme ? darkThemeNavBar : lightThemeNavBar}</>;
 };
 export default Navigation;

@@ -1,0 +1,38 @@
+input {
+  display: none;
+}
+
+.radio-category {
+  padding: 9px 11px;
+  text-align: center;
+  width: 85px;
+  line-height: 20px;
+  border-radius: 5px;
+}
+.radio-category-white-theme {
+  border: 1px solid #eef0f3;
+  color: #000000;
+}
+.radio-category-white-theme:hover {
+  cursor: pointer;
+  background: #fafafa;
+}
+.radio-category-white-theme-active {
+  border: 1px solid #15161a;
+}
+.radio-category-dark-theme {
+  color: #ffffff;
+  background-color: #15161a;
+  border: 1px solid #30333a;
+}
+.radio-category-dark-theme:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #15161a;
+  border: 1px solid #ffffff;
+}
+.radio-category-dark-theme-active {
+  background-color: #ffffff;
+  color: #15161a;
+  border: 1px solid #ffffff;
+}

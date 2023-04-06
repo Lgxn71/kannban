@@ -1,8 +1,15 @@
 import { useState } from "react";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { useSelector } from "react-redux";
+
+import OptionsWhite from "../../svgs/OptionsIconWhite";
+import OptionsBlack from "../../svgs/OptionsIconBlack";
 
 import classes from "./DraggableSection.module.css";
+
 const DraggableSection = (props) => {
+  const [isDropDownShown, setIsDropDownShown] = useState(false);
+  const isDarkTheme = useSelector((state) => state.isDark);
+
   const {
     setColumns,
     id,
@@ -12,8 +19,6 @@ const DraggableSection = (props) => {
     setInputField,
     selectedRadio,
   } = props;
-
-  const [isDropDownShown, setIsDropDownShown] = useState(false);
 
   const deleteTaskHandler = () => {
     const result = column.items.filter((task) => task.id !== id);
@@ -85,37 +90,85 @@ const DraggableSection = (props) => {
         ref={innerRef}
         className={`${classes["card-draggable"]}
       ${
-        isDraggingOver
-          ? classes["card-draggable-dragged"]
-          : classes["card-draggable-unactive"]
+        isDarkTheme
+          ? isDraggingOver
+            ? classes["card-draggable-dragged-dark"]
+            : classes["card-draggable-unactive-dark"]
+          : isDraggingOver
+          ? classes["card-draggable-dragged-white"]
+          : classes["card-draggable-unactive-white"]
       }`}
       >
         <div className={classes["task-title-container"]}>
-          <h3 className={classes["task-title"]}>{taskContent.itemTitle}</h3>
+          <h3
+            className={`
+            ${classes["task-title"]}
+              ${
+                isDarkTheme
+                  ? classes["task-title-white"]
+                  : classes["task-title-dark"]
+              }
+            `}
+          >
+            {taskContent.itemTitle}
+          </h3>
           {isDropDownShown && (
-            <div className={classes["options"]}>
-              <p data-id={id} onClick={editTaskHandler}>
+            <div
+              className={`${classes["options"]}
+            ${
+              isDarkTheme
+                ? classes["options-theme-dark"]
+                : classes["options-theme-white"]
+            }`}
+            >
+              <p
+                style={{ borderRadius: "5px 5px 0px 0px" }}
+                className={`
+                 ${classes["option"]} 
+                 ${
+                   isDarkTheme
+                     ? classes["option-dark-theme"]
+                     : classes["option-white-theme"]
+                 }`}
+                data-id={id}
+                onClick={editTaskHandler}
+              >
                 Edit
               </p>
-              <p onClick={deleteTaskHandler}>Delete</p>
+              <hr
+                className={`${classes.breakline} ${
+                  isDarkTheme
+                    ? classes["breakline-dark-theme"]
+                    : classes["breakline-white-theme"]
+                }`}
+              />
+              <p
+                style={{ borderRadius: "0px 0px 5px 5px" }}
+                className={`
+                 ${classes["option"]} ${
+                  isDarkTheme
+                    ? classes["option-dark-theme"]
+                    : classes["option-white-theme"]
+                }`}
+                onClick={deleteTaskHandler}
+              >
+                Delete
+              </p>
             </div>
           )}
-
-          <MoreHorizIcon
-            sx={{
-              "&:hover": {
-                cursor: "pointer",
-                backgroundColor: "#F7F7F9",
-                borderRadius: "100px",
-              },
-              "& .MuiSvgIcon-root": {
-                cursor: "pointer",
-              },
-            }}
-            onClick={showDropDownHandler}
-          />
+          {isDarkTheme ? (
+            <OptionsWhite onClick={showDropDownHandler} />
+          ) : (
+            <OptionsBlack onClick={showDropDownHandler} />
+          )}
         </div>
-        <p className={classes["task-date"]}>{taskContent.date}</p>
+        <p
+          className={`${classes["task-date"]} ${
+            isDarkTheme ? classes["task-date-dark"] : classes["task-date-white"]
+          }`}
+        >
+          {taskContent.date}
+        </p>
       </div>
     </>
   );

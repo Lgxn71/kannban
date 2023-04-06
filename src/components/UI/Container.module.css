@@ -2,3 +2,8 @@
   padding: 20px 70px;
   border-bottom: 1px solid #efeff0;
 }
+
+.container-dark {
+  padding: 20px 70px;
+  border-bottom: 1px solid #30333a;
+}

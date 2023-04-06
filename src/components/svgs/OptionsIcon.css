@@ -1,0 +1,11 @@
+.options {
+  cursor: pointer;
+}
+.options-white:hover {
+  background: #7b7b87;
+  border-radius: 100px;
+}
+.options-dark:hover {
+  background: #f7f7f9;
+  border-radius: 100px;
+}

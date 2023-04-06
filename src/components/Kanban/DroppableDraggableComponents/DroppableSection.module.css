@@ -6,13 +6,22 @@
   max-width: 400px;
   width: 100%;
   min-height: 734px;
-  border: 1px solid #e2e6ed;
   margin: auto;
   margin-bottom: 20px;
 }
-.card-droppable-unactive {
+.card-droppable-unactive-white {
   background-color: #f9fafb;
+  border: 1px solid #e2e6ed;
 }
-.card-droppable-dragged {
+.card-droppable-dragged-white {
   background-color: #f0f0f9;
+  border: 1px solid #e2e6ed;
+}
+.card-droppable-unactive-dark {
+  background-color: #15161a;
+  border: 1px solid #30333a;
+}
+.card-droppable-dragged-dark {
+  background-color: #2c2f38;
+  border: 1px solid #30333a;
 }

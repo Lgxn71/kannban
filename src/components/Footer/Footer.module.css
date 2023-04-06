@@ -4,12 +4,16 @@
   align-items: center;
 }
 .footer-title {
-  font-family: "Inter";
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
+}
+.footer-title-white-theme {
   color: #15161a;
+}
+.footer-title-dark-theme {
+  color: #ffffff;
 }
 .link-container {
   display: flex;
@@ -20,7 +24,6 @@
 }
 .link {
   display: block;
-  font-family: "Inter";
   font-style: normal;
   font-weight: 500;
   font-size: 12px;

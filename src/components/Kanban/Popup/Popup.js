@@ -1,12 +1,17 @@
 import { v4 as uuidv4 } from "uuid";
+import { useSelector } from "react-redux";
+
 import ModalBlur from "./ModalBlur";
-import RadioButton from "./RadioButton";
+
+import RadioButton from "../../UI/Buttons/RadioButton";
+import radioData from "../../../datamap/radiobuttons";
+
 import Card from "../../UI/Card";
 import classes from "./Popup.module.css";
 
-import radioMap from "../../../datamap/radiobuttons";
-
 const Popup = (props) => {
+  const isDarkTheme = useSelector((state) => state.isDark);
+
   const {
     columns,
     setColumns,
@@ -38,6 +43,11 @@ const Popup = (props) => {
 
   const closePopUpHandler = () => {
     setIsPopupShown(false);
+    setTaskToEditState({
+      task: {},
+      isEditting: false,
+      selectedRadio: "",
+    });
   };
 
   const formEditHandler = (event) => {
@@ -55,7 +65,6 @@ const Popup = (props) => {
     const filteredTasksUndefined = columns.undefined.items.filter(
       (item) => item.id !== taskToEditState.task.id
     );
-
     if (taskToEditState.selectedRadio === "todo") {
       setColumns((prevState) => ({
         ...prevState,
@@ -130,8 +139,12 @@ const Popup = (props) => {
     onTasks(task);
 
     setInputField("");
-    setSelectedRadio("todo");
     setIsPopupShown(false);
+    setTaskToEditState({
+      task: {},
+      isEditting: false,
+      selectedRadio: "",
+    });
   };
 
   return (
@@ -139,24 +152,43 @@ const Popup = (props) => {
       <ModalBlur setIsPopupShown={setIsPopupShown} />
       <div className={classes.popup}>
         <Card>
-          {taskToEditState.isEditting && (
-            <h2 className={classes.title}>Edit Task</h2>
-          )}
-          {!taskToEditState.isEditting && (
-            <h2 className={classes.title}>Add New Task</h2>
-          )}
+          <h2
+            className={`${classes.title} ${
+              isDarkTheme
+                ? classes["title-dark-theme"]
+                : classes["title-white-theme"]
+            }`}
+          >
+            {taskToEditState.isEditting ? "Edit Task" : "Add New Task"}
+          </h2>
+
           <form
             onSubmit={
               taskToEditState.isEditting ? formEditHandler : formSubmitHandler
             }
           >
-            <div className={classes.form}>
-              <label className={classes["title-label"]} htmlFor="title">
+            <div className={classes["container-popup"]}>
+              <label
+                className={`
+                ${classes["title-label"]}
+                ${
+                  isDarkTheme
+                    ? classes["title-label-dark-theme"]
+                    : classes["title-label-white-theme"]
+                }
+                `}
+                htmlFor="title"
+              >
                 Title
               </label>
               <input
                 value={inputField}
-                className={classes["title-input"]}
+                className={`${classes["title-input"]}
+                ${
+                  isDarkTheme
+                    ? classes["title-input-dark-theme"]
+                    : classes["title-input-white-theme"]
+                }`}
                 name="title"
                 type="text"
                 id="title"
@@ -167,9 +199,20 @@ const Popup = (props) => {
 
               {!taskToEditState.isEditting && (
                 <>
-                  <h2 className={classes["title-label"]}>Select Category</h2>
-                  <div className={classes["label-categories"]}>
-                    {radioMap.map((radio) => (
+                  <h2
+                    className={`
+                ${classes["title-label"]}
+                ${
+                  isDarkTheme
+                    ? classes["title-label-dark-theme"]
+                    : classes["title-label-white-theme"]
+                }
+                `}
+                  >
+                    Select Category
+                  </h2>
+                  <div className={classes["radio-categories"]}>
+                    {radioData.map((radio) => (
                       <RadioButton
                         key={radio.id}
                         radioChangeHandler={radioChangeHandler}
@@ -183,16 +226,37 @@ const Popup = (props) => {
               )}
             </div>
 
-            <div className={classes["form-actions"]}>
+            <div
+              className={`
+              ${classes["form-actions"]} 
+              ${
+                isDarkTheme
+                  ? classes["form-actions-dark-theme"]
+                  : classes["form-actions-white-theme"]
+              }`}
+            >
               <button
                 type="button"
                 onClick={closePopUpHandler}
-                className={classes["btn-light"]}
+                className={`
+                ${classes["btn"]}
+                ${
+                  isDarkTheme
+                    ? classes["cancel-btn-dark-theme"]
+                    : classes["cancel-btn-white-theme"]
+                }`}
               >
                 Cancel
               </button>
 
-              <button type="submit" className={classes["btn-dark"]}>
+              <button
+                type="submit"
+                className={`${classes["btn"]} ${
+                  isDarkTheme
+                    ? classes["add-btn-dark-theme"]
+                    : classes["add-btn-white-theme"]
+                }`}
+              >
                 Add
               </button>
             </div>

@@ -1,14 +1,18 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { columnsData } from "../datamap/dndData";
 import DragAndDrop from "../components/Kanban/DragAndDrop";
+import Popup from "../components/Kanban/Popup/Popup";
 
+import Button from "../components/UI/Buttons/Button";
 import Card from "../components/UI/Card";
 import Container from "../components/UI/Container";
 
-import Popup from "../components/Kanban/Popup/Popup";
-import classes from "./KannbanPage.module.css";
+import classes from "./KanbanPage.module.css";
+import PlusIconBlack from "../components/svgs/PlusIconBlack";
+import PlusIconWhite from "../components/svgs/PlusIconWhite";
 
-const Kannban = () => {
+const Kanban = () => {
   const [columns, setColumns] = useState(columnsData);
 
   const [isPopupShown, setIsPopupShown] = useState(false);
@@ -20,6 +24,21 @@ const Kannban = () => {
     isEditting: false,
     selectedRadio: "",
   });
+
+  const isDarkTheme = useSelector((state) => state.isDark);
+  const [isBtnHovered, setBtnIsHovered] = useState(false);
+
+  function handleMouseEnter() {
+    setBtnIsHovered(true);
+  }
+
+  function handleMouseLeave() {
+    setBtnIsHovered(false);
+  }
+
+  const showPopupHandler = (event) => {
+    setIsPopupShown(true);
+  };
 
   const insertNewTaskHandler = (newTask) => {
     if (newTask.selectedRadio === "todo") {
@@ -60,9 +79,6 @@ const Kannban = () => {
     }
   };
 
-  const showPopupHandler = (event) => {
-    setIsPopupShown(true);
-  };
   return (
     <>
       {isPopupShown && (
@@ -82,11 +98,35 @@ const Kannban = () => {
 
       <Container>
         <Card>
-          <div className={classes.eyebrow}>
-            <h2>Tasks</h2>
-            <button onClick={showPopupHandler} className="btn-dark">
-              + New Task
-            </button>
+          <div
+            className={`
+          ${classes["eyebrow-shared"]}
+          ${isDarkTheme ? classes["eyebrow-dark"] : classes["eyebrow-white"]}`}
+          >
+            <h2
+              className={`
+            ${classes["eyebrow-title-shared "]}
+            ${
+              isDarkTheme
+                ? classes["eyebrow-title-dark"]
+                : classes["eyebrow-title-white"]
+            }`}
+            >
+              Tasks
+            </h2>
+            <Button
+              size="10px"
+              onClick={showPopupHandler}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              {isDarkTheme || isBtnHovered ? (
+                <PlusIconBlack />
+              ) : (
+                <PlusIconWhite />
+              )}
+              New Task
+            </Button>
           </div>
           <DragAndDrop
             inputField={inputField}
@@ -102,4 +142,4 @@ const Kannban = () => {
     </>
   );
 };
-export default Kannban;
+export default Kanban;
