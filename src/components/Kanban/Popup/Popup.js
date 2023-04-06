@@ -3,9 +3,6 @@ import { useSelector } from "react-redux";
 
 import ModalBlur from "./ModalBlur";
 
-import RadioButton from "../../UI/Buttons/RadioButton";
-import radioData from "../../../datamap/radiobuttons";
-
 import Card from "../../UI/Card";
 import classes from "./Popup.module.css";
 
@@ -15,8 +12,6 @@ const Popup = (props) => {
   const {
     columns,
     setColumns,
-    selectedRadio,
-    setSelectedRadio,
     setIsPopupShown,
     inputField,
     setInputField,
@@ -37,16 +32,13 @@ const Popup = (props) => {
       }));
     }
   };
-  const radioChangeHandler = (event) => {
-    setSelectedRadio(event.target.value);
-  };
 
   const closePopUpHandler = () => {
     setIsPopupShown(false);
     setTaskToEditState({
       task: {},
       isEditting: false,
-      selectedRadio: "",
+      column: "",
     });
   };
 
@@ -65,7 +57,8 @@ const Popup = (props) => {
     const filteredTasksUndefined = columns.undefined.items.filter(
       (item) => item.id !== taskToEditState.task.id
     );
-    if (taskToEditState.selectedRadio === "todo") {
+    // MISSTAKE IN IF
+    if (taskToEditState.column === "To Do") {
       setColumns((prevState) => ({
         ...prevState,
         todo: {
@@ -74,7 +67,7 @@ const Popup = (props) => {
         },
       }));
     }
-    if (taskToEditState.selectedRadio === "inprogress") {
+    if (taskToEditState.column === "In Progress") {
       setColumns((prevState) => ({
         ...prevState,
         inprogress: {
@@ -83,7 +76,7 @@ const Popup = (props) => {
         },
       }));
     }
-    if (taskToEditState.selectedRadio === "finished") {
+    if (taskToEditState.column === "Finished") {
       setColumns((prevState) => ({
         ...prevState,
         finished: {
@@ -93,7 +86,7 @@ const Popup = (props) => {
       }));
     }
 
-    if (taskToEditState.selectedRadio === "undefined") {
+    if (taskToEditState.column === "Undefined") {
       setColumns((prevState) => ({
         ...prevState,
         undefined: {
@@ -106,7 +99,7 @@ const Popup = (props) => {
     setTaskToEditState({
       task: {},
       isEditting: false,
-      selectedRadio: "",
+      column: "",
     });
     setIsPopupShown(false);
     setInputField("");
@@ -114,9 +107,6 @@ const Popup = (props) => {
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    if (taskToEditState.isEditting) {
-      return;
-    }
 
     const date = new Date();
 
@@ -134,17 +124,11 @@ const Popup = (props) => {
       id: taskId,
       title: inputField,
       date: formattedDate,
-      selectedRadio: selectedRadio,
     };
     onTasks(task);
 
     setInputField("");
     setIsPopupShown(false);
-    setTaskToEditState({
-      task: {},
-      isEditting: false,
-      selectedRadio: "",
-    });
   };
 
   return (
@@ -196,34 +180,6 @@ const Popup = (props) => {
                 onChange={inputFieldHandler}
                 required
               />
-
-              {!taskToEditState.isEditting && (
-                <>
-                  <h2
-                    className={`
-                ${classes["title-label"]}
-                ${
-                  isDarkTheme
-                    ? classes["title-label-dark-theme"]
-                    : classes["title-label-white-theme"]
-                }
-                `}
-                  >
-                    Select Category
-                  </h2>
-                  <div className={classes["radio-categories"]}>
-                    {radioData.map((radio) => (
-                      <RadioButton
-                        key={radio.id}
-                        radioChangeHandler={radioChangeHandler}
-                        id={radio.id}
-                        label={radio.label}
-                        selectedRadio={selectedRadio}
-                      />
-                    ))}
-                  </div>
-                </>
-              )}
             </div>
 
             <div

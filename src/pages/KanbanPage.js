@@ -4,7 +4,7 @@ import { columnsData } from "../datamap/dndData";
 import DragAndDrop from "../components/Kanban/DragAndDrop";
 import Popup from "../components/Kanban/Popup/Popup";
 
-import Button from "../components/UI/Buttons/Button";
+import Button from "../components/UI/Button";
 import Card from "../components/UI/Card";
 import Container from "../components/UI/Container";
 
@@ -14,15 +14,12 @@ import PlusIconWhite from "../components/svgs/PlusIconWhite";
 
 const Kanban = () => {
   const [columns, setColumns] = useState(columnsData);
-
   const [isPopupShown, setIsPopupShown] = useState(false);
-  const [selectedRadio, setSelectedRadio] = useState("todo");
   const [inputField, setInputField] = useState("");
 
   const [taskToEditState, setTaskToEditState] = useState({
     task: {},
     isEditting: false,
-    selectedRadio: "",
   });
 
   const isDarkTheme = useSelector((state) => state.isDark);
@@ -41,50 +38,19 @@ const Kanban = () => {
   };
 
   const insertNewTaskHandler = (newTask) => {
-    if (newTask.selectedRadio === "todo") {
-      setColumns((prevState) => ({
-        ...prevState,
-        todo: {
-          name: prevState.todo.name,
-          items: [...prevState.todo.items, newTask],
-        },
-      }));
-    }
-    if (newTask.selectedRadio === "inprogress") {
-      setColumns((prevState) => ({
-        ...prevState,
-        inprogress: {
-          name: prevState.inprogress.name,
-          items: [...prevState.inprogress.items, newTask],
-        },
-      }));
-    }
-    if (newTask.selectedRadio === "finished") {
-      setColumns((prevState) => ({
-        ...prevState,
-        finished: {
-          name: prevState.finished.name,
-          items: [...prevState.finished.items, newTask],
-        },
-      }));
-    }
-    if (newTask.selectedRadio === "undefined") {
-      setColumns((prevState) => ({
-        ...prevState,
-        undefined: {
-          name: prevState.undefined.name,
-          items: [...prevState.undefined.items, newTask],
-        },
-      }));
-    }
+    setColumns((prevState) => ({
+      ...prevState,
+      todo: {
+        name: prevState.todo.name,
+        items: [...prevState.todo.items, newTask],
+      },
+    }));
   };
 
   return (
     <>
       {isPopupShown && (
         <Popup
-          selectedRadio={selectedRadio}
-          setSelectedRadio={setSelectedRadio}
           inputField={inputField}
           setInputField={setInputField}
           columns={columns}
@@ -135,7 +101,6 @@ const Kanban = () => {
             columns={columns}
             setColumns={setColumns}
             setTaskToEditState={setTaskToEditState}
-            selectedRadio={selectedRadio}
           />
         </Card>
       </Container>

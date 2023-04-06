@@ -3,7 +3,7 @@ import Container from "../UI/Container";
 import classes from "./Footer.module.css";
 const Footer = () => {
   const isDarkTheme = useSelector((state) => state.isDark);
-  console.log(isDarkTheme);
+
   return (
     <Container>
       <div className={classes["footer-container"]}>
@@ -15,7 +15,7 @@ const Footer = () => {
               : classes["footer-title-white-theme"]
           }`}
         >
-          Alixyz | 2023{" "}
+          Alixyz | 2023
         </h2>
         <ul className={classes["link-container"]}>
           <a

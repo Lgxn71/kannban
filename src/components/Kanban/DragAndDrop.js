@@ -17,7 +17,6 @@ const Kannban = (props) => {
     inputField,
     setIsPopupShown,
     setTaskToEditState,
-    selectedRadio,
   } = props;
 
   return (
@@ -78,7 +77,6 @@ const Kannban = (props) => {
                                   taskContent={taskContent}
                                   setIsPopupShown={setIsPopupShown}
                                   setTaskToEditState={setTaskToEditState}
-                                  selectedRadio={selectedRadio}
                                   id={item.id}
                                   column={column}
                                   setColumns={setColumns}
