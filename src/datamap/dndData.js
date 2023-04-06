@@ -1,6 +1,6 @@
 export const tasksInitial = [
-  { id: "i1", title: "Task 1", date: "Oct 22, 2022 13:53PM" },
-  { id: "i2", title: "Task 2", date: "Oct 22, 2022 13:53PM" },
+  { id: "i1", title: "Task 1", date: "Oct 22, 2022, 13:53PM" },
+  { id: "i2", title: "Task 2", date: "Oct 22, 2022, 13:53PM" },
 ];
 
 export const columnsData = {

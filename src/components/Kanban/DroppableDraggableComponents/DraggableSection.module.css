@@ -74,7 +74,6 @@
 }
 
 .options-theme-dark {
-  /* NEED TO CHANGE */
   background-color: #1f2126;
   border: 1px solid #30333a;
 }
@@ -91,10 +90,8 @@
 .breakline-white-theme {
   border-bottom: 1px solid #e2e6ed;
 }
-
 .breakline-dark-theme {
-  /* NEED TO CHANGE */
-  border-bottom: 1px solid #e2e6ed;
+  border-bottom: 1px solid #30333a;
 }
 .options .option {
   line-height: 28px;
@@ -111,7 +108,7 @@
   color: #15161a;
   cursor: pointer;
 }
-/* NEED TO CHANGE */
+
 .option-dark-theme {
   color: #767e8d;
 }
