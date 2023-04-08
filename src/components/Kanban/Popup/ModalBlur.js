@@ -3,11 +3,7 @@ import { createPortal } from "react-dom";
 import classes from "./ModalBlur.module.css";
 
 const ModalBlur = (props) => {
-  const { setIsPopupShown } = props;
-
-  const closePopUpHandler = () => {
-    setIsPopupShown(false);
-  };
+  const { closePopUpHandler } = props;
 
   return (
     <>

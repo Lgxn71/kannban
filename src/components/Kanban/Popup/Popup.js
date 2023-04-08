@@ -40,6 +40,7 @@ const Popup = (props) => {
       isEditting: false,
       column: "",
     });
+    setInputField("");
   };
 
   const formEditHandler = (event) => {
@@ -133,7 +134,7 @@ const Popup = (props) => {
 
   return (
     <>
-      <ModalBlur setIsPopupShown={setIsPopupShown} />
+      <ModalBlur closePopUpHandler={closePopUpHandler} />
       <div className={classes.popup}>
         <Card>
           <h2
