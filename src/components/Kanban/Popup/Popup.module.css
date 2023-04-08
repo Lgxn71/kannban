@@ -138,7 +138,7 @@ label {
   background-color: #0057ff;
   color: white;
 }
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 1023px) {
   .popup {
     left: 49.9%;
     top: 79.9%;
