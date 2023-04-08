@@ -138,3 +138,13 @@ label {
   background-color: #0057ff;
   color: white;
 }
+@media only screen and (max-width: 425px) {
+  .popup {
+    left: 49.9%;
+    top: 79.9%;
+    width: 101%;
+  }
+  .title-input {
+    width: 90%;
+  }
+}

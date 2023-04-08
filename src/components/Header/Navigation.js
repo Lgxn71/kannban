@@ -8,7 +8,13 @@ const Navigation = () => {
   const darkThemeNavBar = (
     <nav className={classes.navbar}>
       <div>
-        <h1 className={classes["logo-dark"]}>taskmanager.</h1>
+        <h1
+          className={`
+          ${classes.logo}
+          ${isDarkTheme ? classes["logo-dark-theme"] : undefined}`}
+        >
+          taskmanager.
+        </h1>
       </div>
 
       <ul className={classes["navbar-links"]}>

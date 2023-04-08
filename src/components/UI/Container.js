@@ -5,7 +5,10 @@ const Container = (props) => {
 
   return (
     <div
-      className={isDarkTheme ? classes["container-dark"] : classes.container}
+      className={`
+        ${classes["container"]}
+        ${isDarkTheme ? classes["container-dark"] : classes["container-white"]}
+      `}
     >
       {props.children}
     </div>

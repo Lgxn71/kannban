@@ -98,7 +98,14 @@ const DraggableSection = (props) => {
           : classes["card-draggable-unactive-white"]
       }`}
       >
-        <div className={classes["task-title-container"]}>
+        <div
+          className={`${classes["task-title-container"]}
+          ${
+            isDarkTheme
+              ? classes["task-title-container-dark-theme"]
+              : classes["task-title-container-white-theme"]
+          }`}
+        >
           <h3
             className={`
             ${classes["task-title"]}

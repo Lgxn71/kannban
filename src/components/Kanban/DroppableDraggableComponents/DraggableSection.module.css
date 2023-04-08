@@ -21,16 +21,21 @@
 }
 .card-draggable-dragged-dark {
   border: 1px solid #30333a;
-  background-color: yellow;
+  background-color: #30333a;
 }
 
 .task-title-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #e2e6ed;
   position: relative;
   padding: 15px;
+}
+.task-title-container-dark-theme {
+  border-bottom: 1px solid #30333a;
+}
+.task-title-container-white-theme {
+  border-bottom: 1px solid #e2e6ed;
 }
 .task-title {
   font-style: normal;
@@ -58,7 +63,7 @@
 .task-date-dark {
   color: #5b616e;
 }
-/* outsource into other file */
+
 .options {
   box-sizing: border-box;
   cursor: pointer;
@@ -116,4 +121,7 @@
   background-color: #f7f7f9;
   color: #15161a;
   cursor: pointer;
+}
+@media all and (max-width: 375px) {
+  
 }

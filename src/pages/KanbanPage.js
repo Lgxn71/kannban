@@ -71,7 +71,7 @@ const Kanban = () => {
           >
             <h2
               className={`
-            ${classes["eyebrow-title-shared "]}
+            ${classes["eyebrow-title-shared"]}
             ${
               isDarkTheme
                 ? classes["eyebrow-title-dark"]

@@ -7,7 +7,11 @@ import classes from "./RootLayout.module.css";
 const RootLayout = () => {
   const isDarkTheme = useSelector((state) => state.isDark);
   return (
-    <div className={isDarkTheme ? classes["background-black"] : undefined}>
+    <div
+      id="page"
+      className={`${isDarkTheme ? classes["background-black"] : undefined}
+      ${classes.page}`}
+    >
       <Header />
       <main>
         <Outlet />

@@ -15,8 +15,10 @@ const DarkModeSwitch = () => {
   };
 
   return (
-    <div className={classes["dark-mode-container"]}>
-      {isThemeDark ? <SwitchToLightThemeIcon /> : <SwitchToDarkThemeIcon />}
+    <div className={classes["switcher-container"]}>
+      <div className={classes["icons-handler"]}>
+        {isThemeDark ? <SwitchToLightThemeIcon /> : <SwitchToDarkThemeIcon />}
+      </div>
 
       <Toggle
         translate="18"

@@ -6,7 +6,6 @@
 }
 .single-column {
   display: grid;
-  grid-template-columns: 1fr;
 }
 .section-title {
   font-weight: 500;
@@ -33,4 +32,20 @@
 }
 .section-counter-dark {
   background: #30333a;
+}
+@media only screen and (max-width: 425px) {
+  .single-column {
+    min-height: 140px;
+  }
+  .section-title {
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 11px;
+    max-height: 20px;
+  }
+  .container-main {
+    grid-template-columns: none;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 16px;
+  }
 }
