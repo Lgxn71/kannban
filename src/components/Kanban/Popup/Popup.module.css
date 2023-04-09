@@ -55,6 +55,7 @@ label {
   font-weight: 400;
   padding: 15px;
   font-size: 14px;
+  margin: auto;
   margin-bottom: 15px;
 }
 .title-input-white-theme {
@@ -141,10 +142,17 @@ label {
 @media only screen and (max-width: 1023px) {
   .popup {
     left: 49.9%;
-    top: 79.9%;
+    top: 88%;
     width: 101%;
+  }
+  .title-label {
+    text-align: center;
   }
   .title-input {
     width: 90%;
+    max-width: none;
+  }
+  .form-actions {
+    max-width: none;
   }
 }
