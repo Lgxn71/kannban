@@ -139,47 +139,11 @@ label {
   background-color: #0057ff;
   color: white;
 }
-@media only screen and (max-width: 1023px) {
-}
+
 @media only screen and (max-width: 480px) {
   .popup {
     left: 50%;
-    top: 75%;
-    width: 100%;
-  }
-  .title-label {
-    text-align: center;
-  }
-  .title-input {
-    width: 90%;
-    max-width: none;
-  }
-  .form-actions {
-    max-width: none;
-  }
-}
-@media only screen and (min-width: 481px) and (max-width: 767px) {
-  .popup {
-    left: 50%;
-    top: 80%;
-    width: 100%;
-  }
-  .title-label {
-    text-align: center;
-  }
-  .title-input {
-    width: 90%;
-    max-width: none;
-  }
-  .form-actions {
-    max-width: none;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .popup {
-    left: 50%;
-    top: 80%;
+    top: 77%;
     width: 100%;
   }
   .title-label {
