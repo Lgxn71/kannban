@@ -10,12 +10,9 @@ import RootLayout from "./pages/RootLayout";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "",
     element: <RootLayout />,
-    children: [
-      { path: "kanban", element: <KanbanPage /> },
-      { index: true, element: "docs" },
-    ],
+    children: [{ path: "/", element: <KanbanPage /> }],
   },
 ]);
 

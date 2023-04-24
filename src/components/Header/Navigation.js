@@ -20,22 +20,12 @@ const Navigation = () => {
       <ul className={classes["navbar-links"]}>
         <li className={classes["dark-link"]}>
           <NavLink
-            to="/kanban"
+            to=""
             className={({ isActive }) =>
               isActive ? classes.active : undefined
             }
           >
             kanban
-          </NavLink>
-        </li>
-        <li className={classes["dark-link"]}>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? classes.active : undefined
-            }
-          >
-            docs
           </NavLink>
         </li>
       </ul>
@@ -50,22 +40,12 @@ const Navigation = () => {
       <ul className={classes["navbar-links"]}>
         <li className={classes["ligth-link"]}>
           <NavLink
-            to="kanban"
+            to=""
             className={({ isActive }) =>
               isActive ? classes.active : undefined
             }
           >
             kanban
-          </NavLink>
-        </li>
-        <li className={classes["ligth-link"]}>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? classes.active : undefined
-            }
-          >
-            docs
           </NavLink>
         </li>
       </ul>
