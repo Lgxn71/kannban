@@ -13,7 +13,9 @@ const uiSlice = createSlice({
     },
   },
 });
+
 export const store = configureStore({
   reducer: uiSlice.reducer,
 });
+
 export const { switchThemes } = uiSlice.actions;

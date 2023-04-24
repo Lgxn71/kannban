@@ -3,8 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 
-import "./App.css";
-
 import KanbanPage from "./pages/KanbanPage";
 import RootLayout from "./pages/RootLayout";
 

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+
 import { columnsData } from "../datamap/dndData";
+
 import DragAndDrop from "../components/Kanban/DragAndDrop";
 import Popup from "../components/Kanban/Popup/Popup";
 
@@ -9,6 +11,7 @@ import Card from "../components/UI/Card";
 import Container from "../components/UI/Container";
 
 import classes from "./KanbanPage.module.css";
+
 import PlusIconBlack from "../components/svgs/PlusIconBlack";
 import PlusIconWhite from "../components/svgs/PlusIconWhite";
 

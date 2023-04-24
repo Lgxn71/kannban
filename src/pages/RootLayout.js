@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import classes from "./RootLayout.module.css";
