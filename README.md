@@ -28,7 +28,6 @@
 
 
 ## Features
-List the ready features here:
 - CRUD operations with tasks
 - Dark and White themes
 - Drag and Drop of Tasks between columns
@@ -84,8 +83,6 @@ npm start
 Project is:  _complete_ 
 
 ## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
-
 Room for improvement:
 - Add session, cookies, authentification  and database 
 
