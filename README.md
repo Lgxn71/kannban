@@ -22,7 +22,7 @@
 
 ## Technologies Used
 - React
-- Redux, ReduxToolKitн
+- Redux, ReduxToolKit
 - React-Beautiful-dnd(rbd)
 - uuid
 
